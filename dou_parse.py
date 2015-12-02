@@ -2,7 +2,7 @@
 from lxml import etree
 from lxml import html
 from openpyxl import Workbook
-
+from datetime import datetime
 
 class dou_parse:
 
@@ -63,9 +63,14 @@ class dou_parse:
 if __name__ == '__main__':
     
     d = dou_parse()
+    print 'Go!'
+    starttime = datetime.now()
     urllist = d.geturls('sitemap-companies-112.xml')
     print 'URLs were taken successfully'
     res = d.grabinfo(urllist)
     print 'Info was grabbed successfully'
     d.writeinfo(res)
-    print 'Done!'
+    print '\nDone!'
+    print "Parser strted at: ", starttime.strftime("%Y-%m-%d %H:%M:%S")
+    print "Finished at:      ", datetime.now().strftime("%Y-%m-%d %H:%M:%S")
+    print "Elapsed time:     ", datetime.now() - starttime
